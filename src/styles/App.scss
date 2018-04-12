@@ -1,0 +1,13 @@
+.container {
+  background-color: #f4f4f4;
+  height: 100%;
+
+  .header {
+    position: relative;
+    background-image: linear-gradient(-180deg, #58606a 0%, #2f3a46 77%, #333e4a 100%);
+    height: 56px;
+    line-height: 56px;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+    color: #fff;
+  }
+}

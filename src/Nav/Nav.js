@@ -1,13 +1,8 @@
-import React, { Component } from 'react';
-
+import React, { Component } from "react";
 
 class Nav extends Component {
   render() {
-    return (
-      <div className="nav">
-        djskadajd
-      </div>
-    );
+    return <div className="nav">djskadajd</div>;
   }
 }
 

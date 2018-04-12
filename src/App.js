@@ -1,21 +1,19 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import "./styles/App.css";
+
+
+import Sidebar from "./Sidebar/Sidebar";
+import Main from "./Main/Main";
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to GPage</h1>
-        </header>
-        <p className="App-intro">
-
-        </p>
+      <div className="container" id="gpage">
+        <header className="header">Gpage</header>
+        <Sidebar />
+        <Main />
       </div>
     );
   }
 }
-
 export default App;
