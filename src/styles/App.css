@@ -13,6 +13,53 @@
     .container .header .logo {
       font-size: 24px;
       font-weight: bold; }
+    .container .header .menu-action {
+      position: absolute;
+      right: 0;
+      top: 0;
+      padding-right: 5px;
+      height: 56px; }
+      .container .header .menu-action li {
+        color: #c3cedd;
+        float: left;
+        padding: 0 18px; }
+      .container .header .menu-action a {
+        display: inline-block;
+        height: 56px;
+        line-height: 56px;
+        color: #fff;
+        padding: 0 12px; }
+        .container .header .menu-action a:hover {
+          background-color: rgba(0, 0, 0, 0.1); }
+  .container .content {
+    position: relative; }
+  .container .btn-menu {
+    background-image: linear-gradient(-180deg, #69737f 0%, #3e4751 100%);
+    box-shadow: 0 1px 2px 0 rgba(32, 37, 42, 0.5), inset 0 1px 0 0 #848a92;
+    border: 1px solid #303841;
+    color: #c3cedd;
+    position: relative;
+    top: -2px;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+    padding: 3px 12px;
+    cursor: pointer;
+    outline: none; }
+    .container .btn-menu:hover {
+      background-image: linear-gradient(-180deg, #4d555e 0%, #404850 100%);
+      border: 1px solid #303841;
+      color: #c3cedd; }
+    .container .btn-menu:active {
+      background-image: linear-gradient(-180deg, #4d555e 0%, #404850 100%);
+      border: 1px solid #303841;
+      color: #c3cedd; }
+    .container .btn-menu:focus {
+      color: #c3cedd; }
+    .container .btn-menu .icon-logout {
+      font-size: 10px; }
+  .container button.btn-menu {
+    outline: none; }
+  .container .btn-menu.btn-sm {
+    line-height: 20px; }
   .container .sidebar {
     position: absolute;
     top: 0;
@@ -23,3 +70,18 @@
     overflow: auto;
     background: #edf0f5;
     border-right: 1px solid #e0e1e4; }
+    .container .sidebar li a {
+      color: #fff;
+      background-image: linear-gradient(-180deg, #72baed 0%, #59a6e7 77%, #54a1e7 97%);
+      text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
+      border-top: 1px solid #5fa2de;
+      border-bottom: 1px solid #5fa2de;
+      text-decoration: none;
+      width: 100%;
+      padding: 11px 20px 11px 45px;
+      display: inline-block; }
+  .container .main {
+    background: #fff;
+    min-height: 100vh;
+    margin: 0 0 0 200px;
+    border-radius: 0 0 3px 3px; }
