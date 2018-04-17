@@ -119,4 +119,22 @@
     margin: 0 0 0 200px;
     border-radius: 0 0 3px 3px;
   }
+
+  .components {
+    height: 60px;
+    padding: 20px;
+    border-bottom: 1px solid #e0e1e4;
+
+    li {
+      button {
+        cursor: pointer;
+        display: block;
+        background-color: #fff;
+        width: 120px;
+        height: 60px;
+        border: 1px solid #e0e1e4;
+        text-align: center;
+      }
+    }
+  }
 }

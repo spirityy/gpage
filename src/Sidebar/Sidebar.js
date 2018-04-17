@@ -10,24 +10,41 @@ class Sidebar extends Component {
           name: 'aaaa'
         }
       ]
-    };
-    this.addPage = this.addPage.bind(this);
-    this.editPageName = this.editPageName.bind(this);
-    this.deletePage = this.deletePage.bind(this);
+    }
+    this.addPage = this.addPage.bind(this)
+    this.editPageName = this.editPageName.bind(this)
+    this.deletePage = this.deletePage.bind(this)
   }
   editPageName(event) {
-    this.setState({addingPage: event.target.value});
+    this.setState({addingPage: event.target.value})
   }
   addPage() {
-    this.setState({
-      pages: this.state.pages.concat({name: this.state.addingPage})
-    })
+    if (this.checkPage(this.state.addingPage)) {
+      this.setState({
+        pages: this.state.pages.concat({name: this.state.addingPage})
+      })
+    }
   }
   deletePage(name) {
-    var array = this.state.pages
-    var index = array.indexOf(name)
-    array.splice(index, 1)
-    this.setState({pages: array})
+    let arr = this.state.pages
+    let filtered = arr.filter(function(el) { return el.name !== name })
+    this.setState({pages: filtered})
+  }
+  checkPage(name) {
+    if (name === '') {
+      alert('not null')
+      return false
+    }
+    let array = this.state.pages
+    let ishas = array.some(function(o) {
+      return o.name === name
+    })
+    if (ishas) {
+      alert('exist')
+      return false
+    } else {
+      return true
+    }
   }
   render() {
     return (<div className="sidebar">

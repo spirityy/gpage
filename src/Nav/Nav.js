@@ -6,7 +6,7 @@ class Nav extends Component {
     super();
     this.state = {
       outputPath: 'pages/',
-      htmlFileName: 'aaaas.txt',
+      htmlFileName: 'aaaas.html',
       jsFileName: 'aaaas.js',
       htmlFileContent: 'aaaa',
       jsFileContent: 'function(){}',

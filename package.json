@@ -4,6 +4,7 @@
   "main": "public/main.js",
   "private": true,
   "dependencies": {
+    "nedb": "^1.8.0",
     "node-sass-chokidar": "^1.2.2",
     "npm-run-all": "^4.1.2",
     "react": "^16.3.1",
