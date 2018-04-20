@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-const {dialog} = window.require('electron').remote
-const fs = window.require('fs');
+const {dialog} = require('electron').remote
+const fs = require('fs');
 
 class Nav extends Component {
   constructor() {
