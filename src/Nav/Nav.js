@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+const {dialog} = window.require('electron').remote
 const fs = window.require('fs');
 
 class Nav extends Component {
@@ -14,6 +15,7 @@ class Nav extends Component {
     this.export = this.export.bind(this);
   }
   export() {
+    dialog.showOpenDialog({properties: ['openFile', 'openDirectory', 'multiSelections']})
     if (!fs.existsSync(this.state.outputPath)) {
       fs.mkdirSync(this.state.outputPath);
     }
