@@ -1,10 +1,16 @@
 //db
-import path from 'path'
 import nedb from 'nedb'
 
-const db = new nedb({
-    filename: 'data.db',
-    autoload: true
-})
+let db = {};
+
+db.templates = new nedb({
+  filename: 'data/templates.db',
+  autoload: true
+});
+
+db.components = new nedb({
+  filename: 'data/components.db',
+  autoload: true
+});
 
 export default db

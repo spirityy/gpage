@@ -21,7 +21,7 @@ class Components extends Component {
           {
             this.state.components.map((component, i) => {
               return (<li key={i}>
-                <button onClick={this.addToContent}>+ {component.name}</button>
+                <button onClick={this.addToContent}> + {component.name}</button>
               </li>)
             })
           }

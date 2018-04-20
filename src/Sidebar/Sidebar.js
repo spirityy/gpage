@@ -1,65 +1,88 @@
-import React, {Component} from 'react';
+import React, {Component} from "react";
+import axios from "axios";
+import db from "../db";
 
 class Sidebar extends Component {
   constructor() {
-    super()
+    super();
     this.state = {
-      addingPage: '',
-      pages: [
-        {
-          name: 'aaaa'
-        }
-      ]
-    }
-    this.addPage = this.addPage.bind(this)
-    this.editPageName = this.editPageName.bind(this)
-    this.deletePage = this.deletePage.bind(this)
+      addingTemplate: "",
+      templates: []
+    };
+    this.addTemplate = this.addTemplate.bind(this);
+    this.editTemplateName = this.editTemplateName.bind(this);
+    this.deleteTemplate = this.deleteTemplate.bind(this);
   }
-  editPageName(event) {
-    this.setState({addingPage: event.target.value})
+  componentDidMount() {
+    db.templates.find({}).sort({create_time: 1}).exec((err, templates) => {
+      console.info(templates)
+      this.setState({templates: templates})
+    });
+
+    axios.get("http://www.reddit.com/r/reactjs.json").then(res => {
+      console.info(res);
+    });
   }
-  addPage() {
-    if (this.checkPage(this.state.addingPage)) {
-      this.setState({
-        pages: this.state.pages.concat({name: this.state.addingPage})
+  editTemplateName(event) {
+    this.setState({addingTemplate: event.target.value});
+  }
+  addTemplate() {
+    if (this.checkTemplate(this.state.addingTemplate)) {
+      //insert to db
+      db.templates.insert({
+        name: this.state.addingTemplate,
+        create_time: new Date().getTime()
+      }, (err, newrec) => {
+        db.templates.find({}).sort({create_time: 1}).exec((err, templates) => {
+          this.setState({templates: templates});
+        });
       })
     }
   }
-  deletePage(name) {
-    let arr = this.state.pages
-    let filtered = arr.filter(function(el) { return el.name !== name })
-    this.setState({pages: filtered})
+  deleteTemplate(name) {
+    db.templates.remove({
+      name: name
+    }, {}, (err, numRemoved) => {
+      db.templates.find({}).sort({create_time: 1}).exec((err, templates) => {
+        this.setState({templates: templates});
+      });
+    });
   }
-  checkPage(name) {
-    if (name === '') {
-      alert('not null')
-      return false
+  checkTemplate(name) {
+    if (name === "") {
+      alert("not null");
+      return false;
     }
-    let array = this.state.pages
+    let array = this.state.templates;
     let ishas = array.some(function(o) {
-      return o.name === name
-    })
+      return o.name === name;
+    });
     if (ishas) {
-      alert('exist')
-      return false
+      alert("exist");
+      return false;
     } else {
-      return true
+      return true;
     }
   }
   render() {
     return (<div className="sidebar">
       <div>
-        <input type="text" onChange={this.editPageName}></input>
-        <button type="button" onClick={this.addPage}>+</button>
+        <input type="text" onChange={this.editTemplateName}/>
+        <button type="button" onClick={this.addTemplate}>
+          +
+        </button>
       </div>
       <ul>
         {
-          this.state.pages.map((page, i) => {
+          this.state.templates.map((template, i) => {
             return (<li key={i}>
-              <a href="javascript:void(0);">{page.name}
-                <span onClick={() => this.deletePage(page.name)}>X</span>
+              <a href="javascript:void(0);">
+                {template.name}
+                <span onClick={() => this.deleteTemplate(template.name)}>
+                  X
+                </span>
               </a>
-            </li>)
+            </li>);
           })
         }
       </ul>
