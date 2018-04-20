@@ -6,25 +6,25 @@ class Nav extends Component {
   constructor() {
     super();
     this.state = {
-      outputPath: 'pages/',
       htmlFileName: 'aaaas.html',
       jsFileName: 'aaaas.js',
       htmlFileContent: 'aaaa',
-      jsFileContent: 'function(){}',
+      jsFileContent: 'function(){}'
     };
     this.export = this.export.bind(this);
   }
   export() {
-    dialog.showOpenDialog({properties: ['openFile', 'openDirectory', 'multiSelections']})
-    if (!fs.existsSync(this.state.outputPath)) {
-      fs.mkdirSync(this.state.outputPath);
-    }
-    try {
-      fs.writeFileSync(this.state.outputPath + this.state.htmlFileName, this.state.htmlFileContent, 'utf-8');
-      fs.writeFileSync(this.state.outputPath + this.state.jsFileName, this.state.jsFileContent, 'utf-8');
-    } catch (e) {
-      alert('Failed to save the file !');
-    }
+    dialog.showOpenDialog({
+      properties: ['openDirectory'],
+      buttonLabel: '导出'
+    }, (path) => {
+      try {
+        fs.writeFileSync(path + '/' + this.state.htmlFileName, this.state.htmlFileContent, 'utf-8');
+        fs.writeFileSync(path + '/' + this.state.jsFileName, this.state.jsFileContent, 'utf-8');
+      } catch (e) {
+        alert('Failed to save the file !');
+      }
+    })
   }
   render() {
     const actions = [
