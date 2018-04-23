@@ -32,11 +32,11 @@ class Nav extends Component {
     const actions = [
       {
         className: 'btn btn-menu btn-sm export-btn',
-        text: '导出'
+        text: 'Export'
       }
     ]
     return (<header className="header">
-      <div className="logo">Gpage</div>
+      <div className="logo">GPage</div>
       <ul className="menu-action">
         <li>
           {

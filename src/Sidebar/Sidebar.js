@@ -20,9 +20,11 @@ class Sidebar extends Component {
       this.setState({templates: templates})
     });
 
+    /*
     axios.get("http://www.reddit.com/r/reactjs.json").then(res => {
       console.info(res);
     });
+    */
   }
   editTemplateName(event) {
     this.setState({addingTemplate: event.target.value});
@@ -77,7 +79,7 @@ class Sidebar extends Component {
         {
           this.state.templates.map((template, i) => {
             return (<li key={i}>
-              <a href="javascript:void(0);" onClick={this.props.changeCurrentTemplate}>
+              <a href="javascript:void(0);" onClick={() => this.props.changeCurrentTemplate(template.name)}>
                 {template.name}
                 <span onClick={() => this.deleteTemplate(template.name)}>
                   X

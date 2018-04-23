@@ -11,21 +11,19 @@ class App extends Component {
   constructor() {
     super()
     this.state = {
-      currentTemplate: '3213213',
+      currentTemplate: '',
       currentComponents: []
     }
+    this.changeCurrentTemplate = this.changeCurrentTemplate.bind(this)
   }
   componentDidMount() {}
-  changeCurrentTemplate(e) {
-    console.info(e.target);
-    //e.preventDefault()
-    //this.setState({currentTemplate: template})
+  changeCurrentTemplate(name) {
+    this.setState({currentTemplate: name})
   }
   render() {
     return (<div className="container" id="gpage">
       <Nav/>
       <div className="content">
-        {this.state.currentTemplate}
         <Sidebar changeCurrentTemplate={this.changeCurrentTemplate}/>
         <Main currentTemplate={this.state.currentTemplate} currentComponents={this.state.currentComponents}/>
       </div>
