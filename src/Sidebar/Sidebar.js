@@ -1,10 +1,11 @@
 import React, {Component} from "react";
 import axios from "axios";
 import db from "../db";
+const {dialog} = require('electron').remote
 
 class Sidebar extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       addingTemplate: "",
       templates: []
@@ -50,7 +51,7 @@ class Sidebar extends Component {
   }
   checkTemplate(name) {
     if (name === "") {
-      alert("not null");
+      dialog.showErrorBox('错误', '不为空')
       return false;
     }
     let array = this.state.templates;
@@ -58,7 +59,7 @@ class Sidebar extends Component {
       return o.name === name;
     });
     if (ishas) {
-      alert("exist");
+      dialog.showErrorBox('错误', '已存在')
       return false;
     } else {
       return true;
@@ -76,7 +77,7 @@ class Sidebar extends Component {
         {
           this.state.templates.map((template, i) => {
             return (<li key={i}>
-              <a href="javascript:void(0);">
+              <a href="javascript:void(0);" onClick={this.props.changeCurrentTemplate}>
                 {template.name}
                 <span onClick={() => this.deleteTemplate(template.name)}>
                   X

@@ -18,11 +18,13 @@ class Nav extends Component {
       properties: ['openDirectory'],
       buttonLabel: '导出'
     }, (path) => {
-      try {
-        fs.writeFileSync(path + '/' + this.state.htmlFileName, this.state.htmlFileContent, 'utf-8');
-        fs.writeFileSync(path + '/' + this.state.jsFileName, this.state.jsFileContent, 'utf-8');
-      } catch (e) {
-        alert('Failed to save the file !');
+      if (typeof path !== 'undefined') {
+        try {
+          fs.writeFileSync(path + '/' + this.state.htmlFileName, this.state.htmlFileContent, 'utf-8');
+          fs.writeFileSync(path + '/' + this.state.jsFileName, this.state.jsFileContent, 'utf-8');
+        } catch (e) {
+          alert('Failed to save the file !');
+        }
       }
     })
   }

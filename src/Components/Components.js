@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 
 class Components extends Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.state = {
       components: [
         {
@@ -11,8 +11,9 @@ class Components extends Component {
       ]
     }
   }
-  addToContent() {
-    console.info(123)
+  componentDidMount() {
+    console.info(this.props);
+    //this.setState({components: this.props.currentComponents})
   }
   render() {
     return (<div>
@@ -21,7 +22,8 @@ class Components extends Component {
           {
             this.state.components.map((component, i) => {
               return (<li key={i}>
-                <button onClick={this.addToContent}> + {component.name}</button>
+                <button onClick={this.addToContent}>
+                  + {component.name}</button>
               </li>)
             })
           }
