@@ -126,6 +126,9 @@
     border-bottom: 1px solid #e0e1e4;
 
     li {
+      float: left;
+      margin-right: 20px;
+
       button {
         cursor: pointer;
         display: block;

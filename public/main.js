@@ -10,10 +10,12 @@ function createWindow() {
     height: 680
   });
   mainWindow.loadURL('http://localhost:3000');
+  /*
   app.setAboutPanelOptions({
     applicationName: 'Mook',
     applicationVersion: '0.0.1',
   })
+  */
   mainWindow.on('closed', () => mainWindow = null);
 }
 app.on('ready', createWindow);

@@ -6,8 +6,8 @@ class Nav extends Component {
   constructor() {
     super();
     this.state = {
-      htmlFileName: 'aaaas.html',
-      jsFileName: 'aaaas.js',
+      htmlFileName: 'gpage.html',
+      jsFileName: 'gpage.js',
       htmlFileContent: 'aaaa',
       jsFileContent: 'function(){}'
     };

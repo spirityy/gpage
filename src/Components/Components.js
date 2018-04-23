@@ -6,7 +6,19 @@ class Components extends Component {
     this.state = {
       components: [
         {
-          name: 'form-table'
+          name: 'Table',
+          htmlContent:'',
+          jsContent:'',
+        },
+        {
+          name: 'Form(Table)',
+          htmlContent:'',
+          jsContent:'',
+        },
+        {
+          name: 'Button(Table)',
+          htmlContent:'',
+          jsContent:'',
         }
       ]
     }
@@ -23,7 +35,7 @@ class Components extends Component {
             this.state.components.map((component, i) => {
               return (<li key={i}>
                 <button onClick={this.addToContent}>
-                  + {component.name}</button>
+                  {component.name}</button>
               </li>)
             })
           }
