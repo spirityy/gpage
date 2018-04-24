@@ -13,13 +13,13 @@ function createWindow() {
     height: 680
   });
 
-  mainWindow.openDevTools();
+  mainWindow.webContents.openDevTools();
   //dev mode
   //mainWindow.loadURL('http://localhost:3000');
 
   //package mode
   mainWindow.loadURL(url.format({
-    pathname: path.resolve('./build/index.html'),
+    pathname: path.join(__dirname , '../build/index.html'),
     protocol: 'file:',
     slashes: true
   }))

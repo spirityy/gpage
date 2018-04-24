@@ -1,16 +1,18 @@
 //db
 import nedb from 'nedb'
-//const path = require('path')
+const electron = require('electron');
+const app = electron.remote.app;
+const userData = app.getAppPath('userData');
 
 let db = {};
 
 db.templates = new nedb({
-  filename: '../data/templates.db',
+  filename: userData+'/data/templates.db',
   autoload: true
 });
 
 db.components = new nedb({
-  filename: '../data/components.db',
+  filename: userData+'/data/components.db',
   autoload: true
 });
 
