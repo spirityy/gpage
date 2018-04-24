@@ -1,6 +1,9 @@
 const electron = require('electron');
 const app = electron.app;
+const url = require('url');
+const path = require('path');
 const BrowserWindow = electron.BrowserWindow;
+const {dialog} = require('electron');
 
 let mainWindow;
 
@@ -9,7 +12,17 @@ function createWindow() {
     width: 900,
     height: 680
   });
-  mainWindow.loadURL('http://localhost:3000');
+
+  mainWindow.openDevTools();
+  //dev mode
+  //mainWindow.loadURL('http://localhost:3000');
+
+  //package mode
+  mainWindow.loadURL(url.format({
+    pathname: path.resolve('./build/index.html'),
+    protocol: 'file:',
+    slashes: true
+  }))
   /*
   app.setAboutPanelOptions({
     applicationName: 'Mook',
