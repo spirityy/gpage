@@ -135,7 +135,7 @@
       background-color: #fff;
       text-decoration: none;
       width: 60%;
-      margin: 10px 10%;
+      margin: 15px 10% 0;
       padding: 10px 10%;
       display: inline-block;
       text-align: center;
@@ -151,7 +151,7 @@
 
   .main {
     background: #fff;
-    min-height: 100vh;
+    min-height: calc(100vh - 56px);
     margin: 0 0 0 200px;
     border-radius: 0 0 3px 3px;
 
@@ -161,7 +161,29 @@
       border-bottom: 1px solid #e0e1e4;
     }
 
-    .content {}
+    .content {
+      .layout {
+        width: 50%;
+        display: inline-block;
+        vertical-align: top;
+      }
+
+      .code {
+        background-color: #edf0f5;
+        width: 50%;
+        display: inline-block;
+        vertical-align: top;
+
+        textarea {
+          font-size: 14px;
+          width: 90%;
+          padding: 2%;
+          margin: 3%;
+          height: calc(100vh - 240px);
+          border: 1px solid #e0e1e4;
+        }
+      }
+    }
   }
 
   .components {

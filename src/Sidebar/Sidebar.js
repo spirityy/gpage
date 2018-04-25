@@ -16,15 +16,8 @@ class Sidebar extends Component {
   }
   componentDidMount() {
     db.templates.find({}).sort({create_time: 1}).exec((err, templates) => {
-      console.info(templates)
       this.setState({templates: templates})
     });
-
-    /*
-    axios.get("http://www.reddit.com/r/reactjs.json").then(res => {
-      console.info(res);
-    });
-    */
   }
   editTemplateName(event) {
     this.setState({addingTemplate: event.target.value});
@@ -42,7 +35,9 @@ class Sidebar extends Component {
       })
     }
   }
-  deleteTemplate(name) {
+  deleteTemplate(name,e) {
+    console.info(e);
+    e.stopPropagation();
     db.templates.remove({
       name: name
     }, {}, (err, numRemoved) => {
@@ -84,7 +79,7 @@ class Sidebar extends Component {
           this.state.templates.map((template, i) => {
             return (<li key={i} onClick={() => this.props.changeCurrentTemplate(template.name)}>
               {template.name}
-              <i className="fa fa-close del-icon" onClick={() => this.deleteTemplate(template.name)}></i>
+              <i className="fa fa-close del-icon" onClick={(e) => this.deleteTemplate(template.name,e)}></i>
             </li>);
           })
         }

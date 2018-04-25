@@ -1,11 +1,14 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 
 class Content extends Component {
   render() {
     return (
-      <div>
-        <div className="content">
-          content
+      <div className="content">
+        <div className="layout">
+          layout
+        </div>
+        <div className="code">
+          <textarea></textarea>
         </div>
       </div>
     );
