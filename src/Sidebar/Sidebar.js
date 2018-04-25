@@ -69,7 +69,11 @@ class Sidebar extends Component {
   }
   render() {
     return (<div className="sidebar">
-      <div>
+      <div className="side-title">
+        <i className="fa fa-file-text-o"></i>
+        &nbsp;Template
+      </div>
+      <div className="add-template">
         <input type="text" onChange={this.editTemplateName}/>
         <button type="button" onClick={this.addTemplate}>
           +
@@ -78,13 +82,9 @@ class Sidebar extends Component {
       <ul>
         {
           this.state.templates.map((template, i) => {
-            return (<li key={i}>
-              <a href="javascript:;" onClick={() => this.props.changeCurrentTemplate(template.name)}>
-                {template.name}
-                <span onClick={() => this.deleteTemplate(template.name)}>
-                  X
-                </span>
-              </a>
+            return (<li key={i} onClick={() => this.props.changeCurrentTemplate(template.name)}>
+              {template.name}
+              <i className="fa fa-close del-icon" onClick={() => this.deleteTemplate(template.name)}></i>
             </li>);
           })
         }

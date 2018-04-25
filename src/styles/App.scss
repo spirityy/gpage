@@ -100,16 +100,52 @@
     background: #edf0f5;
     border-right: 1px solid #e0e1e4;
 
-    li a {
-      color: #fff;
-      background-image: linear-gradient(-180deg, #72baed 0%, #59a6e7 77%, #54a1e7 97%);
-      text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
-      border-top: 1px solid #5fa2de;
-      border-bottom: 1px solid #5fa2de;
-      text-decoration: none;
-      width: 100%;
-      padding: 11px 20px 11px 45px;
+    .side-title {
       display: inline-block;
+      padding: 9px 5%;
+      width: 90%;
+      background-image: linear-gradient(-180deg, #d6dbe1 0%, #c7cdd6 48%, #ced3db 97%);
+    }
+
+    .add-template {
+      background-color: #fff;
+      padding: 9px 5%;
+      width: 90%;
+
+      input[type="text"] {
+        height: 22px;
+        line-height: 22px;
+        padding: 0 5px;
+        border: 1px solid #e0e1e4;
+      }
+
+      button {
+        cursor: pointer;
+        margin-left: 10px;
+        border: 1px solid #e0e1e4;
+        background-color: #fff;
+        height: 24px;
+        width: 24px;
+      }
+    }
+
+    li {
+      cursor: pointer;
+      border: 1px solid #e0e1e4;
+      background-color: #fff;
+      text-decoration: none;
+      width: 60%;
+      margin: 10px 10%;
+      padding: 10px 10%;
+      display: inline-block;
+      text-align: center;
+
+      .del-icon {
+        width: 25px;
+        margin: 10px auto 0;
+        display: block;
+        text-align: center;
+      }
     }
   }
 
@@ -118,6 +154,14 @@
     min-height: 100vh;
     margin: 0 0 0 200px;
     border-radius: 0 0 3px 3px;
+
+    .current-template {
+      padding: 6px 12px;
+      line-height: 20px;
+      border-bottom: 1px solid #e0e1e4;
+    }
+
+    .content {}
   }
 
   .components {

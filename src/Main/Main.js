@@ -13,11 +13,13 @@ class Main extends Component {
       {
         this.props.currentTemplate
           ? (<div>
-            <div>currentTemplate:{this.props.currentTemplate}</div>
             <Components currentTemplate={this.props.currentTemplate}/>
+            <div className="current-template">currentTemplate:{this.props.currentTemplate}</div>
             <Content currentComponents={this.props.currentComponents}/>
           </div>)
-          : ('')
+          : (<div>
+            <Components currentTemplate={this.props.currentTemplate}/>
+          </div>)
       }
     </div>);
   }
