@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import axios from "axios";
+//import axios from "axios";
 import db from "../db";
 const {dialog} = require('electron').remote
 
@@ -16,15 +16,8 @@ class Sidebar extends Component {
   }
   componentDidMount() {
     db.templates.find({}).sort({create_time: 1}).exec((err, templates) => {
-      console.info(templates)
       this.setState({templates: templates})
     });
-
-    /*
-    axios.get("http://www.reddit.com/r/reactjs.json").then(res => {
-      console.info(res);
-    });
-    */
   }
   editTemplateName(event) {
     this.setState({addingTemplate: event.target.value});
@@ -42,7 +35,8 @@ class Sidebar extends Component {
       })
     }
   }
-  deleteTemplate(name) {
+  deleteTemplate(name,e) {
+    e.stopPropagation();
     db.templates.remove({
       name: name
     }, {}, (err, numRemoved) => {
@@ -69,7 +63,11 @@ class Sidebar extends Component {
   }
   render() {
     return (<div className="sidebar">
-      <div>
+      <div className="side-title">
+        <i className="fa fa-file-text-o"></i>
+        &nbsp;Template
+      </div>
+      <div className="add-template">
         <input type="text" onChange={this.editTemplateName}/>
         <button type="button" onClick={this.addTemplate}>
           +
@@ -78,13 +76,9 @@ class Sidebar extends Component {
       <ul>
         {
           this.state.templates.map((template, i) => {
-            return (<li key={i}>
-              <a href="javascript:void(0);" onClick={() => this.props.changeCurrentTemplate(template.name)}>
-                {template.name}
-                <span onClick={() => this.deleteTemplate(template.name)}>
-                  X
-                </span>
-              </a>
+            return (<li key={i} onClick={() => this.props.changeCurrentTemplate(template.name)}>
+              {template.name}
+              <i className="fa fa-close del-icon" onClick={(e) => this.deleteTemplate(template.name,e)}></i>
             </li>);
           })
         }
