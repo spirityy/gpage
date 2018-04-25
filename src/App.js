@@ -21,7 +21,7 @@ class App extends Component {
   render() {
     return (<div className="container" id="gpage">
       <Nav/>
-      <div className="content">
+      <div className="main-wrapper">
         <Sidebar changeCurrentTemplate={this.changeCurrentTemplate}/>
         <Main currentTemplate={this.state.currentTemplate} currentComponents={this.state.currentComponents}/>
       </div>

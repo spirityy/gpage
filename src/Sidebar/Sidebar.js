@@ -36,7 +36,6 @@ class Sidebar extends Component {
     }
   }
   deleteTemplate(name,e) {
-    console.info(e);
     e.stopPropagation();
     db.templates.remove({
       name: name

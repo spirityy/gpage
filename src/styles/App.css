@@ -31,8 +31,9 @@
         padding: 0 12px; }
         .container .header .menu-action a:hover {
           background-color: rgba(0, 0, 0, 0.1); }
-  .container .content {
-    position: relative; }
+  .container .main-wrapper {
+    position: relative;
+    height: calc(100vh - 56px); }
   .container .btn-menu {
     background-image: linear-gradient(-180deg, #69737f 0%, #3e4751 100%);
     box-shadow: 0 1px 2px 0 rgba(32, 37, 42, 0.5), inset 0 1px 0 0 #848a92;
@@ -97,10 +98,12 @@
       background-color: #fff;
       text-decoration: none;
       width: 60%;
-      margin: 15px 10% 0;
+      margin: 0 10% 15px;
       padding: 10px 10%;
       display: inline-block;
       text-align: center; }
+      .container .sidebar li:first-child {
+        margin-top: 15px; }
       .container .sidebar li .del-icon {
         width: 25px;
         margin: 10px auto 0;
@@ -108,29 +111,32 @@
         text-align: center; }
   .container .main {
     background: #fff;
-    min-height: calc(100vh - 56px);
     margin: 0 0 0 200px;
     border-radius: 0 0 3px 3px; }
     .container .main .current-template {
       padding: 6px 12px;
       line-height: 20px;
       border-bottom: 1px solid #e0e1e4; }
-    .container .main .content .layout {
-      width: 50%;
-      display: inline-block;
-      vertical-align: top; }
-    .container .main .content .code {
-      background-color: #edf0f5;
-      width: 50%;
-      display: inline-block;
-      vertical-align: top; }
-      .container .main .content .code textarea {
-        font-size: 14px;
-        width: 90%;
-        padding: 2%;
-        margin: 3%;
-        height: calc(100vh - 240px);
-        border: 1px solid #e0e1e4; }
+    .container .main .content {
+      height: calc(100vh - 190px); }
+      .container .main .content .layout {
+        width: 50%;
+        display: inline-block;
+        vertical-align: top; }
+      .container .main .content .editor {
+        background-color: #edf0f5;
+        width: 50%;
+        display: inline-block;
+        vertical-align: top;
+        height: 100%; }
+        .container .main .content .editor textarea {
+          resize: none;
+          font-size: 14px;
+          width: 90%;
+          height: 90%;
+          padding: 2%;
+          margin: 3%;
+          border: 1px solid #e0e1e4; }
   .container .components {
     height: 60px;
     padding: 20px;
