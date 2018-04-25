@@ -12,7 +12,7 @@ class Editor extends Component {
   }
   render() {
     return (<div className="editor">
-      <AceEditor mode="json" theme="textmate" onChange={this.Change} height="100%" name="editor" />
+      <AceEditor mode="json" theme="textmate" onChange={this.Change} width="100%" height="100%" name="editor" />
     </div>);
   }
 }
