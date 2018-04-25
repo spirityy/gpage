@@ -15,14 +15,16 @@ function createWindow() {
 
   mainWindow.webContents.openDevTools();
   //dev mode
-  //mainWindow.loadURL('http://localhost:3000');
+  mainWindow.loadURL('http://localhost:3000');
 
-  //package mode
+  //prod mode
+  /*
   mainWindow.loadURL(url.format({
     pathname: path.join(__dirname , '../build/index.html'),
     protocol: 'file:',
     slashes: true
   }))
+  */
   /*
   app.setAboutPanelOptions({
     applicationName: 'Mook',

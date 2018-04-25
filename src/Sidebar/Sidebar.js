@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import axios from "axios";
+//import axios from "axios";
 import db from "../db";
 const {dialog} = require('electron').remote
 
@@ -79,7 +79,7 @@ class Sidebar extends Component {
         {
           this.state.templates.map((template, i) => {
             return (<li key={i}>
-              <a href="javascript:void(0);" onClick={() => this.props.changeCurrentTemplate(template.name)}>
+              <a href="javascript:;" onClick={() => this.props.changeCurrentTemplate(template.name)}>
                 {template.name}
                 <span onClick={() => this.deleteTemplate(template.name)}>
                   X

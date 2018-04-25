@@ -5,8 +5,6 @@ import Nav from './Nav/Nav';
 import Sidebar from './Sidebar/Sidebar';
 import Main from './Main/Main';
 
-import db from "./db";
-
 class App extends Component {
   constructor() {
     super()
