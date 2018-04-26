@@ -4,7 +4,7 @@ class Layout extends Component {
   render() {
     return (
         <div className="layout">
-          dsajkdjlas
+          <div></div>
         </div>
     );
   }

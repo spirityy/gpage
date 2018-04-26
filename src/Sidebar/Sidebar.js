@@ -78,7 +78,7 @@ class Sidebar extends Component {
           this.state.templates.map((template, i) => {
             return (<li key={i} onClick={() => this.props.changeCurrentTemplate(template.name)}>
               {template.name}
-              <i className="fa fa-close del-icon" onClick={(e) => this.deleteTemplate(template.name,e)}></i>
+              <i className="fa fa fa-trash-o del-icon" onClick={(e) => this.deleteTemplate(template.name,e)}></i>
             </li>);
           })
         }
