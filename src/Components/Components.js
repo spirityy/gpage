@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import db from "../db";
 
 class Components extends Component {
   constructor(props) {
@@ -7,25 +8,31 @@ class Components extends Component {
       components: [
         {
           name: 'Table',
-          htmlContent:'',
-          jsContent:'',
-        },
-        {
+          htmlContent: '',
+          jsContent: ''
+        }, {
           name: 'Form(Table)',
-          htmlContent:'',
-          jsContent:'',
-        },
-        {
+          htmlContent: '',
+          jsContent: ''
+        }, {
           name: 'Button(Table)',
-          htmlContent:'',
-          jsContent:'',
+          htmlContent: '',
+          jsContent: ''
         }
       ]
     }
+    this.addComponentToTemplate = this.addComponentToTemplate.bind(this)
   }
   componentDidMount() {
-    console.info(this.props);
     //this.setState({components: this.props.currentComponents})
+  }
+  addComponentToTemplate(name,e) {
+    db.components.insert({
+      name: name,
+      template:this.props.currentTemplate,
+      create_time: new Date().getTime()
+    }, (err, newrec) => {
+    })
   }
   render() {
     return (<div>
@@ -34,7 +41,7 @@ class Components extends Component {
           {
             this.state.components.map((component, i) => {
               return (<li key={i}>
-                <button onClick={this.addToContent}>
+                <button onClick={(e) => this.addComponentToTemplate(component.name, e)}>
                   {component.name}</button>
               </li>)
             })

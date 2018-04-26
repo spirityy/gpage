@@ -13,9 +13,9 @@ class Main extends Component {
       {
         this.props.currentTemplate
           ? (<div>
-            <Components/>
+            <Components currentTemplate={this.props.currentTemplate}/>
             <div className="current-template">currentTemplate:<strong>{this.props.currentTemplate}</strong></div>
-            <Content currentComponents={this.props.currentComponents}/>
+            <Content currentTemplate={this.props.currentTemplate}/>
           </div>)
           : (<div>
             <Components/>

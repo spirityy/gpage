@@ -121,12 +121,12 @@
     .container .main .content {
       height: calc(100vh - 190px); }
       .container .main .content .layout {
-        width: 50%;
+        width: 45%;
         display: inline-block;
         vertical-align: top; }
       .container .main .content .editor {
         background-color: #edf0f5;
-        width: 50%;
+        width: 55%;
         display: inline-block;
         vertical-align: top;
         height: 100%; }
@@ -153,3 +153,14 @@
         height: 60px;
         border: 1px solid #e0e1e4;
         text-align: center; }
+  .container .layout li {
+    border: 1px dashed #e0e1e4;
+    margin: 20px auto 0;
+    width: 80%;
+    height: 100px;
+    line-height: 100px;
+    text-align: center;
+    display: block;
+    cursor: move; }
+    .container .layout li:last-child {
+      margin-bottom: 20px; }

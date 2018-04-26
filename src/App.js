@@ -10,7 +10,6 @@ class App extends Component {
     super()
     this.state = {
       currentTemplate: '',
-      currentComponents: []
     }
     this.changeCurrentTemplate = this.changeCurrentTemplate.bind(this)
   }
@@ -23,7 +22,7 @@ class App extends Component {
       <Nav/>
       <div className="main-wrapper">
         <Sidebar changeCurrentTemplate={this.changeCurrentTemplate}/>
-        <Main currentTemplate={this.state.currentTemplate} currentComponents={this.state.currentComponents}/>
+        <Main currentTemplate={this.state.currentTemplate} />
       </div>
     </div>);
   }

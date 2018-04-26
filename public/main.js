@@ -6,25 +6,21 @@ const BrowserWindow = electron.BrowserWindow;
 const {dialog} = require('electron');
 
 let mainWindow;
+process.env.NODE_ENV = 'development';
 
 function createWindow() {
-  mainWindow = new BrowserWindow({
-    width: 900,
-    height: 680
-  });
+  mainWindow = new BrowserWindow({width: 900, height: 680});
 
-  mainWindow.webContents.openDevTools();
-  //dev mode
-  mainWindow.loadURL('http://localhost:3000');
-
-  //prod mode
-  /*
-  mainWindow.loadURL(url.format({
-    pathname: path.join(__dirname , '../build/index.html'),
-    protocol: 'file:',
-    slashes: true
-  }))
-  */
+  if (process.env.NODE_ENV === "production") {
+    mainWindow.loadURL(url.format({
+      pathname: path.join(__dirname, '../build/index.html'),
+      protocol: 'file:',
+      slashes: true
+    }))
+  } else if (process.env.NODE_ENV === "development") {
+    mainWindow.loadURL('http://localhost:3000');
+    mainWindow.webContents.openDevTools();
+  }
   /*
   app.setAboutPanelOptions({
     applicationName: 'Mook',
