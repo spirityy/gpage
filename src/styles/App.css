@@ -155,20 +155,29 @@
         text-align: center; }
   .container .layout li {
     position: relative;
-    border: 1px dashed #e0e1e4;
-    margin: 20px auto 0;
+    margin: 0 auto 40px;
     width: 80%;
-    height: 100px;
+    height: 70px;
     line-height: 100px;
     text-align: center;
     display: block;
     cursor: move; }
+    .container .layout li:first-child {
+      margin-top: 30px; }
     .container .layout li:last-child {
-      margin-bottom: 20px; }
-    .container .layout li .fa-times-circle {
-      cursor: pointer;
-      color: #666;
+      margin-bottom: 50px; }
+    .container .layout li .item-name {
+      border: 1px dashed #e0e1e4;
+      height: 70px;
+      line-height: 70px; }
+    .container .layout li .item-del {
       position: absolute;
-      right: -10px;
-      top: -10px;
+      left: calc(50% - 10px);
+      height: 20px;
+      margin-top: 5px;
+      text-align: center; }
+    .container .layout li .fa-times-circle {
+      display: block;
+      cursor: pointer;
+      color: #999;
       font-size: 20px; }

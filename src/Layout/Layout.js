@@ -1,23 +1,30 @@
 import React, {Component} from 'react';
+import {SortableContainer, SortableElement,SortableHandle} from 'react-sortable-hoc';
 
 class Layout extends Component {
+  /*
   constructor(props) {
     super(props)
-    this.sort = this.sort.bind(this)
   }
-  sort() {}
+  */
   render() {
+    const DragHandle = SortableHandle(({value}) => <div className="item-name SortableHandle">{value.name}</div>)
+    const SortableItem = SortableElement(({value}) => {
+      return (<li>
+        <DragHandle value={value}/>
+        <div className="item-del">
+          <i className="fa fa-times-circle" onClick={(e) => this.props.removeComponentFromTemplate(value._id, e)}></i>
+        </div>
+      </li>)
+    });
+
+    const SortableList = SortableContainer(({items}) => {
+      return (<ul>
+        {items.map((value, index) => (<SortableItem key={index} index={index} value={value}/>))}
+      </ul>);
+    });
     return (<div className="layout">
-      <ul>
-        {
-          this.props.components.map((component, i) => {
-            return (<li key={i}>
-              <i className="fa fa-times-circle" onClick={(e) => this.props.removeComponentFromTemplate(component.name, e)}></i>
-              {component.name}
-            </li>);
-          })
-        }
-      </ul>
+      <SortableList items={this.props.components} onSortEnd={this.props.SortComponentsEnd} useDragHandle={true}/>
     </div>);
   }
 }

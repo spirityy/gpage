@@ -15,7 +15,7 @@ class Main extends Component {
           ? (<div>
             <Components currentTemplate={this.props.currentTemplate} addComponentToTemplate={this.props.addComponentToTemplate}/>
             <div className="current-template">Template:<strong>{this.props.currentTemplate}</strong></div>
-            <Content currentTemplate={this.props.currentTemplate} currentComponents={this.props.currentComponents} removeComponentFromTemplate={this.props.removeComponentFromTemplate}/>
+            <Content currentTemplate={this.props.currentTemplate} currentComponents={this.props.currentComponents} removeComponentFromTemplate={this.props.removeComponentFromTemplate}  SortComponentsEnd={this.props.SortComponentsEnd}/>
           </div>)
           : (<div>
             <Components addComponentToTemplate={this.props.addComponentToTemplate}/>

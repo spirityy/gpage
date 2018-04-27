@@ -219,25 +219,40 @@
   .layout {
     li {
       position: relative;
-      border: 1px dashed #e0e1e4;
-      margin: 20px auto 0;
+      margin: 0 auto 40px;
       width: 80%;
-      height: 100px;
+      height: 70px;
       line-height: 100px;
       text-align: center;
       display: block;
       cursor: move;
 
+      &:first-child {
+        margin-top: 30px;
+      }
+
       &:last-child {
-        margin-bottom: 20px;
+        margin-bottom: 50px;
+      }
+
+      .item-name {
+        border: 1px dashed #e0e1e4;
+        height: 70px;
+        line-height: 70px;
+      }
+
+      .item-del {
+        position: absolute;
+        left: calc(50% - 10px);
+        height: 20px;
+        margin-top: 5px;
+        text-align: center;
       }
 
       .fa-times-circle {
+        display: block;
         cursor: pointer;
-        color: #666;
-        position: absolute;
-        right: -10px;
-        top: -10px;
+        color: #999;
         font-size: 20px;
       }
     }

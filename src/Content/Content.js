@@ -12,8 +12,9 @@ class Content extends Component {
   componentDidMount() {
   }
   render() {
-    return (<div className="content">
-      <Layout components={this.props.currentComponents} removeComponentFromTemplate={this.props.removeComponentFromTemplate}/>
+    return (
+      <div className="content">
+      <Layout components={this.props.currentComponents} removeComponentFromTemplate={this.props.removeComponentFromTemplate} SortComponentsEnd={this.props.SortComponentsEnd}/>
       <Editor/>
     </div>);
   }
