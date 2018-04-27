@@ -12,6 +12,7 @@ class Layout extends Component {
         {
           this.props.components.map((component, i) => {
             return (<li key={i}>
+              <i className="fa fa-times-circle" onClick={(e) => this.props.removeComponentFromTemplate(component.name, e)}></i>
               {component.name}
             </li>);
           })

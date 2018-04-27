@@ -15,6 +15,7 @@ class App extends Component {
     }
     this.changeCurrentTemplate = this.changeCurrentTemplate.bind(this)
     this.addComponentToTemplate = this.addComponentToTemplate.bind(this)
+    this.removeComponentFromTemplate = this.removeComponentFromTemplate.bind(this)
   }
   componentDidMount() {}
   changeCurrentTemplate(name) {
@@ -35,12 +36,23 @@ class App extends Component {
       })
     }
   }
+  removeComponentFromTemplate(name, e) {
+    e.stopPropagation();
+    db.components.remove({
+      name: name,
+      template: this.state.currentTemplate
+    }, {}, (err, numRemoved) => {
+      db.components.find({template: this.state.currentTemplate}).sort({create_time: 1}).exec((err, components) => {
+        this.setState({currentComponents: components})
+      })
+    });
+  }
   render() {
     return (<div className="container" id="gpage">
       <Nav/>
       <div className="main-wrapper">
         <Sidebar changeCurrentTemplate={this.changeCurrentTemplate}/>
-        <Main currentTemplate={this.state.currentTemplate} currentComponents={this.state.currentComponents} addComponentToTemplate={this.addComponentToTemplate}/>
+        <Main currentTemplate={this.state.currentTemplate} currentComponents={this.state.currentComponents} addComponentToTemplate={this.addComponentToTemplate} removeComponentFromTemplate={this.removeComponentFromTemplate}/>
       </div>
     </div>);
   }

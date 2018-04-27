@@ -13,7 +13,7 @@ class Content extends Component {
   }
   render() {
     return (<div className="content">
-      <Layout components={this.props.currentComponents}/>
+      <Layout components={this.props.currentComponents} removeComponentFromTemplate={this.props.removeComponentFromTemplate}/>
       <Editor/>
     </div>);
   }

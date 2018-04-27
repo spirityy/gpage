@@ -154,6 +154,7 @@
         border: 1px solid #e0e1e4;
         text-align: center; }
   .container .layout li {
+    position: relative;
     border: 1px dashed #e0e1e4;
     margin: 20px auto 0;
     width: 80%;
@@ -164,3 +165,10 @@
     cursor: move; }
     .container .layout li:last-child {
       margin-bottom: 20px; }
+    .container .layout li .fa-times-circle {
+      cursor: pointer;
+      color: #666;
+      position: absolute;
+      right: -10px;
+      top: -10px;
+      font-size: 20px; }
