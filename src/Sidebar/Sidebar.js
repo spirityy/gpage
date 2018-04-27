@@ -10,9 +10,10 @@ class Sidebar extends Component {
       addingTemplate: "",
       templates: []
     };
-    this.addTemplate = this.addTemplate.bind(this);
-    this.editTemplateName = this.editTemplateName.bind(this);
-    this.deleteTemplate = this.deleteTemplate.bind(this);
+    this.addTemplate = this.addTemplate.bind(this)
+    this.editTemplateName = this.editTemplateName.bind(this)
+    this.deleteTemplate = this.deleteTemplate.bind(this)
+    this.handleKeyPress = this.handleKeyPress.bind(this)
   }
   componentDidMount() {
     db.templates.find({}).sort({create_time: 1}).exec((err, templates) => {
@@ -21,6 +22,11 @@ class Sidebar extends Component {
   }
   editTemplateName(event) {
     this.setState({addingTemplate: event.target.value});
+  }
+  handleKeyPress(e) {
+    if (e.key === 'Enter') {
+      this.addTemplate()
+    }
   }
   addTemplate() {
     if (this.checkTemplate(this.state.addingTemplate)) {
@@ -35,7 +41,7 @@ class Sidebar extends Component {
       })
     }
   }
-  deleteTemplate(name,e) {
+  deleteTemplate(name, e) {
     e.stopPropagation();
     db.templates.remove({
       name: name
@@ -68,17 +74,15 @@ class Sidebar extends Component {
         &nbsp;Template
       </div>
       <div className="add-template">
-        <input type="text" onChange={this.editTemplateName}/>
-        <button type="button" onClick={this.addTemplate}>
-          +
-        </button>
+        <input type="text" onChange={this.editTemplateName} onKeyPress={this.handleKeyPress}/>
+        <i className="fa fa-plus-circle" onClick={this.addTemplate}></i>
       </div>
       <ul>
         {
           this.state.templates.map((template, i) => {
             return (<li key={i} onClick={() => this.props.changeCurrentTemplate(template.name)}>
               {template.name}
-              <i className="fa fa fa-trash-o del-icon" onClick={(e) => this.deleteTemplate(template.name,e)}></i>
+              <i className="fa fa fa-trash-o del-icon" onClick={(e) => this.deleteTemplate(template.name, e)}></i>
             </li>);
           })
         }

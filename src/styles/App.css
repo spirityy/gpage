@@ -85,13 +85,11 @@
         line-height: 22px;
         padding: 0 5px;
         border: 1px solid #e0e1e4; }
-      .container .sidebar .add-template button {
+      .container .sidebar .add-template .fa-plus-circle {
         cursor: pointer;
         margin-left: 10px;
-        border: 1px solid #e0e1e4;
-        background-color: #fff;
-        height: 24px;
-        width: 24px; }
+        font-size: 22px;
+        vertical-align: sub; }
     .container .sidebar li {
       cursor: pointer;
       border: 1px solid #e0e1e4;
