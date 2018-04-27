@@ -26,13 +26,14 @@ class Components extends Component {
   componentDidMount() {
     //this.setState({components: this.props.currentComponents})
   }
-  addComponentToTemplate(name,e) {
-    db.components.insert({
-      name: name,
-      template:this.props.currentTemplate,
-      create_time: new Date().getTime()
-    }, (err, newrec) => {
-    })
+  addComponentToTemplate(name, e) {
+    if (this.props.currentTemplate !== undefined) {
+      db.components.insert({
+        name: name,
+        template: this.props.currentTemplate,
+        create_time: new Date().getTime()
+      }, (err, newrec) => {})
+    }
   }
   render() {
     return (<div>

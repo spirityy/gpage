@@ -8,17 +8,13 @@ class Content extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      components: []
     }
   }
   componentDidMount() {
-    db.components.find({template:this.props.currentTemplate}).sort({create_time: 1}).exec((err, components) => {
-      console.info(components);
-    });
   }
   render() {
     return (<div className="content">
-      <Layout/>
+      <Layout components={this.props.currentComponents}/>
       <Editor/>
     </div>);
   }
