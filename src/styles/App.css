@@ -121,6 +121,8 @@
     .container .main .content {
       height: calc(100vh - 190px); }
       .container .main .content .layout {
+        height: 100%;
+        overflow: scroll;
         width: 45%;
         display: inline-block;
         vertical-align: top; }
