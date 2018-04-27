@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import db from "../db";
+//import db from "../db";
 
 class Components extends Component {
   constructor(props) {
@@ -21,19 +21,9 @@ class Components extends Component {
         }
       ]
     }
-    this.addComponentToTemplate = this.addComponentToTemplate.bind(this)
   }
   componentDidMount() {
     //this.setState({components: this.props.currentComponents})
-  }
-  addComponentToTemplate(name, e) {
-    if (this.props.currentTemplate !== undefined) {
-      db.components.insert({
-        name: name,
-        template: this.props.currentTemplate,
-        create_time: new Date().getTime()
-      }, (err, newrec) => {})
-    }
   }
   render() {
     return (<div>
@@ -42,7 +32,7 @@ class Components extends Component {
           {
             this.state.components.map((component, i) => {
               return (<li key={i}>
-                <button onClick={(e) => this.addComponentToTemplate(component.name, e)}>
+                <button onClick={(e) => this.props.addComponentToTemplate(component.name, e)}>
                   {component.name}</button>
               </li>)
             })

@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import db from "../db";
 
 import Editor from '../Editor/Editor';
 import Layout from '../Layout/Layout';

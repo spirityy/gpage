@@ -11,25 +11,36 @@ class App extends Component {
     super()
     this.state = {
       currentTemplate: '',
-      currentComponents:[]
+      currentComponents: []
     }
     this.changeCurrentTemplate = this.changeCurrentTemplate.bind(this)
+    this.addComponentToTemplate = this.addComponentToTemplate.bind(this)
   }
   componentDidMount() {}
   changeCurrentTemplate(name) {
     db.components.find({template: name}).sort({create_time: 1}).exec((err, components) => {
-      this.setState({
-        currentTemplate: name,
-        currentComponents: components
-      })
+      this.setState({currentTemplate: name, currentComponents: components})
     });
+  }
+  addComponentToTemplate(name, e) {
+    if (this.state.currentTemplate !== undefined) {
+      db.components.insert({
+        name: name,
+        template: this.state.currentTemplate,
+        create_time: new Date().getTime()
+      }, (err, newrec) => {
+        db.components.find({template: this.state.currentTemplate}).sort({create_time: 1}).exec((err, components) => {
+          this.setState({currentComponents: components})
+        })
+      })
+    }
   }
   render() {
     return (<div className="container" id="gpage">
       <Nav/>
       <div className="main-wrapper">
         <Sidebar changeCurrentTemplate={this.changeCurrentTemplate}/>
-        <Main currentTemplate={this.state.currentTemplate} currentComponents={this.state.currentComponents} />
+        <Main currentTemplate={this.state.currentTemplate} currentComponents={this.state.currentComponents} addComponentToTemplate={this.addComponentToTemplate}/>
       </div>
     </div>);
   }
