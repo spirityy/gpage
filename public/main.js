@@ -9,7 +9,7 @@ let mainWindow;
 process.env.NODE_ENV = 'development';
 
 function createWindow() {
-  mainWindow = new BrowserWindow({width: 900, height: 680});
+  mainWindow = new BrowserWindow({width: 1024, height: 768});
 
   if (process.env.NODE_ENV === "production") {
     mainWindow.loadURL(url.format({

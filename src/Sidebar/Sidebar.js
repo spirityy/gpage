@@ -57,7 +57,7 @@ class Sidebar extends Component {
   }
   checkTemplate(name) {
     if (name === "") {
-      dialog.showErrorBox('错误', '不为空')
+      dialog.showErrorBox('提示', '请填写模板名称')
       return false;
     }
     let array = this.state.templates;
@@ -65,7 +65,7 @@ class Sidebar extends Component {
       return o.name === name;
     });
     if (ishas) {
-      dialog.showErrorBox('错误', '已存在')
+      dialog.showErrorBox('提示', '不能重复添加相同模板')
       return false;
     } else {
       return true;
