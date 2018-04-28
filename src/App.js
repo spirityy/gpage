@@ -96,13 +96,13 @@ class App extends Component {
         async.each(this.state.currentComponents, (i, callback) => {
           async.parallel([
             function(cb) {
-              fs.readFile(userData + '/data/components/' + i.name + '.html', (err, buf) => {
+              fs.readFile(userData + '/data/components/' + i.name + '.html', 'utf8', (err, buf) => {
                 htmlString += Handlebars.compile(buf.toString())(JSON.parse(fs.readFileSync(userData + '/data/json/' + i.name + '.json', 'utf8')))
                 cb();
               })
             },
             function(cb) {
-              fs.readFile(userData + '/data/components/' + i.name + '.js', (err, buf) => {
+              fs.readFile(userData + '/data/components/' + i.name + '.js', 'utf8', (err, buf) => {
                 jsString += Handlebars.compile(buf.toString())(JSON.parse(fs.readFileSync(userData + '/data/json/' + i.name + '.json', 'utf8')))
                 cb();
               });
@@ -113,7 +113,7 @@ class App extends Component {
         }, (err) => {
           async.parallel([
             (ccb) => {
-              fs.readFile(userData + '/data/base/base.html', (err, buf) => {
+              fs.readFile(userData + '/data/base/base.html', 'utf8', (err, buf) => {
                 this.setState({
                   htmlContent: Handlebars.compile(buf.toString())({htmlContent: htmlString})
                 })
@@ -121,7 +121,8 @@ class App extends Component {
               })
             },
             (ccb) => {
-              fs.readFile(userData + '/data/base/base.js', (err, buf) => {
+              fs.readFile(userData + '/data/base/base.js', 'utf8', (err, buf) => {
+                console.info(Handlebars.compile(buf.toString())({jsContent: jsString}))
                 this.setState({
                   jsContent: Handlebars.compile(buf.toString())({jsContent: jsString})
                 })
