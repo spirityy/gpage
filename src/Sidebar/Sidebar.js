@@ -46,8 +46,12 @@ class Sidebar extends Component {
     db.templates.remove({
       name: name
     }, {}, (err, numRemoved) => {
-      db.templates.find({}).sort({create_time: 1}).exec((err, templates) => {
-        this.setState({templates: templates});
+      db.components.remove({
+        template: name
+      }, { multi: true }, (err, numRemoved) => {
+        db.templates.find({}).sort({create_time: 1}).exec((err, templates) => {
+          this.setState({templates: templates});
+        });
       });
     });
   }
