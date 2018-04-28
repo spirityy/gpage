@@ -155,13 +155,11 @@
         text-align: center; }
   .container .layout li {
     position: relative;
-    margin: 0 auto 40px;
+    margin: 0 auto 30px;
     width: 80%;
-    height: 70px;
     line-height: 100px;
     text-align: center;
-    display: block;
-    cursor: move; }
+    display: block; }
     .container .layout li:first-child {
       margin-top: 30px; }
     .container .layout li:last-child {
@@ -169,15 +167,19 @@
     .container .layout li .item-name {
       border: 1px dashed #e0e1e4;
       height: 70px;
-      line-height: 70px; }
-    .container .layout li .item-del {
-      position: absolute;
-      left: calc(50% - 10px);
+      line-height: 70px;
+      cursor: move; }
+    .container .layout li .item-action {
+      margin-top: 10px;
       height: 20px;
-      margin-top: 5px;
-      text-align: center; }
-    .container .layout li .fa-times-circle {
-      display: block;
-      cursor: pointer;
-      color: #999;
-      font-size: 20px; }
+      line-height: 20px;
+      text-align: center;
+      overflow: hidden; }
+    .container .layout li .fa {
+      display: inline-block;
+      vertical-align: middle;
+      margin-right: 10px;
+      font-size: 14px;
+      cursor: pointer; }
+      .container .layout li .fa:last-child {
+        margin-right: 0; }

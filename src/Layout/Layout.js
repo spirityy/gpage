@@ -8,12 +8,13 @@ class Layout extends Component {
   }
   */
   render() {
-    const DragHandle = SortableHandle(({value}) => <div className="item-name SortableHandle">{value.name}</div>)
+    const DragHandle = SortableHandle(({value}) => <div className="item-name">{value.name}</div>)
     const SortableItem = SortableElement(({value}) => {
       return (<li>
         <DragHandle value={value}/>
-        <div className="item-del">
-          <i className="fa fa-times-circle" onClick={(e) => this.props.removeComponentFromTemplate(value._id, e)}></i>
+        <div className="item-action">
+          <i className="fa fa-edit"></i>
+          <i className="fa fa-trash-o" onClick={(e) => this.props.removeComponentFromTemplate(value._id, e)}></i>
         </div>
       </li>)
     });
