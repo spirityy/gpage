@@ -7,7 +7,7 @@ import Sidebar from './Sidebar/Sidebar';
 import Main from './Main/Main';
 
 import {arrayMove} from 'react-sortable-hoc';
-import Handlebars from 'handlebars';
+import Handlebars from 'handlebars/dist/handlebars.min.js';
 
 const fs = require('fs');
 const electron = require('electron');
@@ -15,6 +15,8 @@ const {dialog} = require('electron').remote
 
 const app = electron.remote.app;
 const userData = app.getAppPath('userData');
+
+const async = require("async");
 
 class App extends Component {
   constructor() {
@@ -30,7 +32,8 @@ class App extends Component {
     this.removeComponentFromTemplate = this.removeComponentFromTemplate.bind(this)
     this.SortComponentsEnd = this.SortComponentsEnd.bind(this)
     this.reBuildIndex = this.reBuildIndex.bind(this)
-    this.exportFile = this.exportFile.bind(this)
+    this.makeResultFile = this.makeResultFile.bind(this)
+    this.dialogExport = this.dialogExport.bind(this)
   }
   componentDidMount() {}
   changeCurrentTemplate(name) {
@@ -83,51 +86,75 @@ class App extends Component {
       this.setState({currentComponents: components});
     })
   }
-  exportFile() {
+  makeResultFile() {
     if (this.state.currentTemplate !== undefined && this.state.currentTemplate !== '') {
       if (this.state.currentComponents.length === 0) {
         dialog.showErrorBox('提示', '请添加至少一个组件');
       } else {
-
-        for (let i of this.state.currentComponents) {
-          fs.readFile(userData + '/data/snippets/' + i.name + '.html', (err, buf) => {
-            let htmlString = Handlebars.compile(buf.toString())(JSON.parse(fs.readFileSync(userData + '/data/json/' + i.name + '.json', 'utf8')))
-            this.setState({
-              htmlContent: this.state.htmlContent + htmlString
-            })
-            console.info(this.state)
-          });
-          fs.readFile(userData + '/data/snippets/' + i.name + '.js', (err, buf) => {
-            let jsString = Handlebars.compile(buf.toString())(JSON.parse(fs.readFileSync(userData + '/data/json/' + i.name + '.json', 'utf8')))
-            this.setState({
-              jsContent: this.state.jsContent + jsString
-            })
-            console.info(this.state)
-          });
-        }
+        let htmlString = ''
+        let jsString = ''
+        async.each(this.state.currentComponents, (i, callback) => {
+          async.parallel([
+            function(cb) {
+              fs.readFile(userData + '/data/components/' + i.name + '.html', (err, buf) => {
+                htmlString += Handlebars.compile(buf.toString())(JSON.parse(fs.readFileSync(userData + '/data/json/' + i.name + '.json', 'utf8')))
+                cb();
+              })
+            },
+            function(cb) {
+              fs.readFile(userData + '/data/components/' + i.name + '.js', (err, buf) => {
+                jsString += Handlebars.compile(buf.toString())(JSON.parse(fs.readFileSync(userData + '/data/json/' + i.name + '.json', 'utf8')))
+                cb();
+              });
+            }
+          ], (err) => {
+            callback();
+          })
+        }, (err) => {
+          async.parallel([
+            (ccb) => {
+              fs.readFile(userData + '/data/base/base.html', (err, buf) => {
+                this.setState({
+                  htmlContent: Handlebars.compile(buf.toString())({htmlContent: htmlString})
+                })
+                ccb()
+              })
+            },
+            (ccb) => {
+              fs.readFile(userData + '/data/base/base.js', (err, buf) => {
+                this.setState({
+                  jsContent: Handlebars.compile(buf.toString())({jsContent: jsString})
+                })
+                ccb();
+              })
+            }
+          ], () => {
+            this.dialogExport();
+          })
+        });
       }
-      /*
-      dialog.showOpenDialog({
-        properties: ['openDirectory'],
-        buttonLabel: '导出'
-      }, (path) => {
-        if (typeof path !== 'undefined') {
-          try {
-            fs.writeFileSync(path + '/' + this.state.htmlFileName, this.state.htmlFileContent, 'utf-8');
-            fs.writeFileSync(path + '/' + this.state.jsFileName, this.state.jsFileContent, 'utf-8');
-          } catch (e) {
-            alert('Failed to save the file !');
-          }
-        }
-      })
-      */
     } else {
       dialog.showErrorBox('提示', '请选择模板');
     }
   }
+  dialogExport() {
+    dialog.showOpenDialog({
+      properties: ['openDirectory'],
+      buttonLabel: '导出'
+    }, (path) => {
+      if (typeof path !== 'undefined') {
+        try {
+          fs.writeFileSync(path + '/' + this.state.currentTemplate + '.html', this.state.htmlContent, 'utf-8');
+          fs.writeFileSync(path + '/' + this.state.currentTemplate + '.js', this.state.jsContent, 'utf-8');
+        } catch (e) {
+          dialog.showErrorBox('错误', '导出失败，请重试');
+        }
+      }
+    })
+  }
   render() {
     return (<div className="container" id="gpage">
-      <Nav exportFile={this.exportFile}/>
+      <Nav makeResultFile={this.makeResultFile}/>
       <div className="main-wrapper">
         <Sidebar changeCurrentTemplate={this.changeCurrentTemplate}/>
         <Main currentTemplate={this.state.currentTemplate} currentComponents={this.state.currentComponents} addComponentToTemplate={this.addComponentToTemplate} removeComponentFromTemplate={this.removeComponentFromTemplate} SortComponentsEnd={this.SortComponentsEnd}/>

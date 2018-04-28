@@ -23,7 +23,7 @@ class Nav extends Component {
         <li>
           {
             actions.map((action, i) => {
-              return (<button id="logout" key={i} className={action.className} onClick={this.props.exportFile}>
+              return (<button id="logout" key={i} className={action.className} onClick={this.props.makeResultFile}>
                 {action.text}
               </button>)
             })
